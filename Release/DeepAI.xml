@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeepAI</name>
+    </assembly>
+    <members>
+        <member name="T:DeepAI.RealtimeStreamUtilities">
+            <summary>
+            A collection of helper functions for use with real time streams, such as sending webcam input to a stream, or playing the output of a stream.
+            </summary>
+        </member>
+        <member name="M:DeepAI.RealtimeStreamUtilities.#ctor">
+            <summary>
+            Construct a new instance - this is done automatically as this object will be available on all DeepAI_API objects.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:DeepAI.RealtimeStreamUtilities.getWebcamInputStreamCmdForRealtimeStream(DeepAI.RealtimeStream,System.String,System.Int32,System.Int32,System.Int32)" -->
+        <member name="M:DeepAI.RealtimeStreamUtilities.getPlayerCmdForRealtimeStream(DeepAI.RealtimeStream)">
+            <summary>
+            Get the program name and arguments to launch a process that will play the output of a realtime stream.
+            </summary>
+            <param name="stream">The realtime stream to play.</param>
+            <returns>program name and arguments as array</returns>
+        </member>
+        <member name="M:DeepAI.RealtimeStreamUtilities.getVideoCaptureDevices">
+            <summary>
+            Get a list of availabe video capture device names.
+            </summary>
+            <returns>List of string device names</returns>
+        </member>
+        <member name="M:DeepAI.RealtimeStreamUtilities.getVideoStreamFormatsForDeviceName(System.String)">
+            <summary>
+            Get the frame rate and frame size combinations that the given input device supports.
+            </summary>
+            <param name="deviceName">The input device to get capabilities for.</param>
+            <returns>Array of supported formats for the device.</returns>
+        </member>
+        <member name="M:DeepAI.RealtimeStreamUtilities.launchPlayerForStream(DeepAI.RealtimeStream,System.Boolean)">
+            <summary>
+            Launches a new process to play the output of a realtime stream in a window.
+            </summary>
+            <param name="stream">The stream to play back.</param>
+            <param name="showWindow">Set to false to hide the command prompt. (Not recommended.)</param>
+            <returns>Windows Process handle</returns>
+        </member>
+        <member name="M:DeepAI.RealtimeStreamUtilities.launchWebcamSenderForStream(DeepAI.RealtimeStream,System.String,System.Int32,System.Boolean,System.Int32,System.Int32)">
+            <returns>Windows Process handle</returns>
+        </member>
+        <member name="T:DeepAI.RealtimeStreamUtilities.VideoStreamFormat">
+            <summary>
+            Represents the framerate and frame size of a video stream.
+            </summary>
+        </member>
+        <member name="T:DeepAI.RealtimeStream">
+            <summary>
+            Represents the status and configuration for a single Realtime video stream.
+            </summary>
+        </member>
+        <member name="P:DeepAI.RealtimeStream.status">
+            <summary>
+            One of PENDING, RUNNING, STOPPED, FAILED
+            </summary>
+        </member>
+        <member name="P:DeepAI.RealtimeStream.input_url">
+            <summary>
+            URL at which you should send your input. This URL is compatible with ffmpeg and tools based upon it.
+            </summary>
+        </member>
+        <member name="P:DeepAI.RealtimeStream.output_url">
+            <summary>
+            URL at which the results can be streamed back. This URL is compatible with ffmpeg and tools based upon it, like Ventuz.
+            </summary>
+        </member>
+        <member name="P:DeepAI.RealtimeStream.state_change_reason">
+            <summary>
+            The description of the reason for the change in status if it is known. For example, if transitioned to STOPPED due to inactivity, or FAILED due to DeepAI internal error.
+            </summary>
+        </member>
+        <member name="P:DeepAI.RealtimeStream.model_options">
+            <summary>
+            Currently active model options of the stream.
+            </summary>
+        </member>
+        <member name="T:DeepAI.BrandsafeJob">
+            <summary>
+            Represents the status and results of a Brandsafe Job.
+            </summary>
+        </member>
+        <member name="T:DeepAI.BrandsafeJobResults">
+            <summary>
+            Represents the results of a Brandsafe Job.
+            </summary>
+        </member>
+        <member name="T:DeepAI.VideoJob">
+            <summary>
+            Represents the status and output for a single Video job.
+            </summary>
+        </member>
+        <member name="P:DeepAI.VideoJob.status">
+            <summary>
+            One of: complete, in-progress, failed
+            </summary>
+        </member>
+        <member name="P:DeepAI.VideoJob.est_total_cost">
+            <summary>
+            The estimated cost of the job if it runs to completion.
+            </summary>
+        </member>
+        <member name="P:DeepAI.VideoJob.results">
+            <summary>
+            The private URL at which the results are available, if present.
+            </summary>
+        </member>
+        <member name="P:DeepAI.StandardApiResponse.output_url">
+            <summary>
+            The private URL at which the results are available, if present.
+            </summary>
+        </member>
+        <member name="P:DeepAI.StandardApiResponse.output">
+            <summary>
+            The immediate output of the model
+            </summary>
+        </member>
+        <member name="T:DeepAI.DeepAIAccountInfo">
+            <summary>
+            Basic information about a DeepAI account
+            </summary>
+        </member>
+        <member name="T:DeepAI.DeepAI_API">
+            <summary>
+            Main API Client class - create an instance of the api by calling: DeepAI_API api = new DeepAI_API(apiKey: "...");
+            </summary>
+        </member>
+        <member name="F:DeepAI.DeepAI_API.realtimeStreamUtilities">
+            <summary>
+            Object with helper utilities for sending input to and playing back a realtime stream.
+            </summary>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.#ctor(System.String)">
+            <summary>
+            Call this to create a new DeepAI_API instance. 
+            </summary>
+            <param name="apiKey">Your DeepAI key as found in your DeepAI dashboard.</param>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getAccountInfo">
+            <summary>
+            Get basic infomation about the account associated with the API Key
+            </summary>
+            <returns>DeepAIAccountInfo object</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getRealtimeStreams">
+            <summary>
+            Get the full list of your active realtime streams, plus streams started or stopped in the last hour
+            </summary>
+            <returns>List of stream info objects</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getRealtimeStream(System.Int32)">
+            <summary>
+            Get the info for a single realtime stream. Useful for continuously polling the status of a stream.
+            </summary>
+            <param name="id">ID of the stream to get</param>
+            <returns>Stream Info object</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.stopRealtimeStream(System.Int32)">
+            <summary>
+            Abort a single realtime stream.
+            </summary>
+            <param name="id">ID of the stream to stop</param>
+            <returns>RealtimeStream object</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getAvailableModelOptionsForModelName(System.String)">
+            <summary>
+            Get the available model options for a given model name
+            </summary>
+            <param name="modelName">Name of the model to get options for</param>
+            <returns>Object representing the possible choices of various fields</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.modifyRealtimeStream(System.Int32,System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>
+            Modify a single realtime stream.
+            </summary>
+            <param name="id">ID of the stream to modify</param>
+            <param name="output_bitrate_kbps">If provided, set the output bitrate of the stream to this value.</param>
+            <returns>RealtimeStream object</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.startRealtimeStream(System.String,System.String,System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Creates a new real-time stream.
+            The status field will initially be "PENDING" which will transition to "RUNNING" within 5 minutes.
+            If the provided stream does not match the width and height values passed, it will be rescaled.
+            </summary>
+            <param name="model">Name of the model to process the video with, such as "deepdream" or "fast-style-transfer"</param>
+            <param name="input_type">Stream descriptor of in the input video stream. Possible values are "tcp/mpegts" or "udp/mpegts".</param>
+            <param name="output_type">Stream descriptor of in the output video stream. Possible values are "tcp/mpegts" or "udp/mpegts".</param>
+            <param name="fps">Frames per second of the input video stream. The output stream will be the same frame rate.</param>
+            <param name="width">width of the video to process in pixels</param>
+            <param name="height">height of the video to process in pixels</param>
+            <param name="output_bitrate_kbps">Bitrate of the output video stream in kbps. If not provided, the system default will be used.</param>
+            <param name="model_options">Dictionary of options to send to the processing model. Possible values may be retrieved with api.getAvailableModelOptionsForModelName(...)</param>
+            <returns>RealtimeStream object containing URLs which may be used to connect to the stream by sending input and receiving output.</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getVideoJob(System.Int32)">
+            <summary>
+            Get status and basic information about a video job. 
+            </summary>
+            <param name="id">The numeric Job ID of the video to get.</param>
+            <returns>VideoJob information object</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.startVideoJob(System.String,System.Object,System.Single,System.Object)">
+            <summary>
+            Creates a new single-model video job using either a file upload or a URL of the video to process.
+            </summary>
+            <param name="model">The model name to process the video with</param>
+            <param name="video">The FileStream of video data to process, or a URL to download.</param>
+            <param name="fps">Frames per second to process. If not given, the frame rate will be chosen automatically, typically the same as the input video, or 2fps for object detection models.</param>
+            <param name="model_options">Dictionary of options to pass to the given model, such as {"style": "YOUR_STYLE_CHOICE"} </param>
+            <returns>Object with the ID and status of the new video job.</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.callStandardApi(System.String,System.Object)">
+            <summary>
+            Call a standard API to run a model on a single image or other input, such as text file.
+            </summary>
+            <param name="model">The name of the model to run.</param>
+            <param name="inputs_and_options">An anonymous object containing the inputs and options needed by the model, such as "image" or "style"</param>
+            <returns>Reponse object with either URL or immediate data.</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.callStandardApiWithBinaryResponse(System.String,System.Object)">
+            <summary>
+            Call a standard API to run a model on a single image or other input, such as text file. Returns raw bytes of the output, such as JPEG data.
+            </summary>
+            <param name="model">The name of the model to run.</param>
+            <param name="inputs_and_options">An anonymous object containing the inputs and options needed by the model, such as "image" or "style"</param>
+            <returns>Byte array representing the output of the model, typically in JPEG format.</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.submitBrandsafeJob(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Submit a new brandsafe job
+            </summary>
+            <param name="url">The URL to scan</param>
+            <param name="extra_options">An optional dictionary of extra options to pass to the API</param>
+            <returns>A BrandsafeJob object with the status of the new job. Use the "id" field to query the status until it is finished.</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.getBrandsafeJob(System.String)">
+            <summary>
+            Get the status and output of a brandsafe job
+            </summary>
+            <param name="id">The ID string of the job to get info for</param>
+            <returns>A BrandsafeJob object with the status of the job. Results will not be present unless the job is complete</returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.objectAsJsonString(System.Object)">
+            <summary>
+            Simple helper method to pretty-print an object response of any API call for easier viewing.
+            </summary>
+            <param name="a"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.ObjectDictionary.#ctor(System.Object)">
+            <summary>
+            Construct.
+            </summary>
+            <param name="a_source">Source object.</param>
+        </member>
+        <member name="M:DeepAI.DeepAI_API.ObjectDictionary.ParseObject(System.Object)">
+            <summary>
+            Create a dictionary from the given object (<paramref name="a_source"/>).
+            </summary>
+            <param name="a_source">Source object.</param>
+            <returns>Created dictionary.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="a_source"/> is null.</exception>
+        </member>
+        <member name="T:DeepAI.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DeepAI.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DeepAI.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:DeepAI.Properties.Resources.ffmpeg">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:DeepAI.Properties.Resources.ffplay">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+    </members>
+</doc>
