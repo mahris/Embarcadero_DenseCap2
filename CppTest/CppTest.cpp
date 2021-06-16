@@ -8,6 +8,7 @@
 
 extern "C" {
   __declspec(dllexport) BSTR Densecap_ProcessFile(BSTR key, BSTR filename);
+  __declspec(dllexport) BSTR Densecap_ProcessUrl(BSTR key, BSTR url);
 }
 
 #pragma comment(lib, "../Release/DeepAIClrWrapper.lib")
@@ -15,25 +16,47 @@ extern "C" {
 
 int main()
 {
-  OutputDebugString(L"qqq");
-    std::cout << "Hello World!\n"; 
-    std::wstring key, filename;
+    std::wstring key, filename, url;
     std::cout << "Enter key or press Enter for default: ";
     std::getline(std::wcin, key);
     if (key.empty()) key = L"quickstart-QUdJIGlzIGNvbWluZy4uLi4K";
     std::wcout << "Entered " << key << "\n";
-    std::cout << "Enter filename: ";
-    std::getline(std::wcin, filename);
-    if (filename.empty()) filename = L"elephant.jpg";
-    std::wcout << "Entered " << filename << ";\n";
     BSTR bkey = SysAllocString(key.c_str());
-    BSTR bfilename = SysAllocString(filename.c_str());
-    BSTR bresult = Densecap_ProcessFile(bkey, bfilename);
 
-    std::wstring result(bresult, SysStringLen(bresult));
-    std::wcout << "Ented " << result << "\n";
+    std::cout << "Enter filename or press Enter to skip: ";
+    std::getline(std::wcin, filename);
+    if (filename.empty()) {
+      std::cout << "Empty filename - skipped\n";
+    }
+    else {
+      std::wcout << "Entered " << filename << "\n";
+      BSTR bfilename = SysAllocString(filename.c_str());
+      BSTR bresultfile = Densecap_ProcessFile(bkey, bfilename);
+
+      std::wstring resultfile(bresultfile, SysStringLen(bresultfile));
+      std::wcout << resultfile << "\n";
+      SysFreeString(bfilename);
+      SysFreeString(bresultfile);
+    }
+
+    std::cout << "Enter URL or press Enter to skip: ";
+    std::getline(std::wcin, url);
+    if (url.empty()) {
+      std::cout << "Empty URL - skipped\n";
+    }
+    else {
+      std::wcout << "Entered " << url << "\n";
+      BSTR burl = SysAllocString(url.c_str());
+      BSTR bresulturl = Densecap_ProcessUrl(bkey, burl);
+
+      std::wstring resulturl(bresulturl, SysStringLen(bresulturl));
+      std::wcout << resulturl << "\n";
+      SysFreeString(burl);
+      SysFreeString(bresulturl);
+    }
+
     SysFreeString(bkey);
-    SysFreeString(bfilename);
+    std::cout << "Press Enter to exit\n";
     getchar();
 }
 
