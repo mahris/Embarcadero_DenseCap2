@@ -11,6 +11,9 @@ object DelphiTestFrm: TDelphiTestFrm
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  DesignSize = (
+    696
+    354)
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
@@ -20,6 +23,9 @@ object DelphiTestFrm: TDelphiTestFrm
     Height = 105
     Align = alTop
     TabOrder = 0
+    DesignSize = (
+      696
+      105)
     object Label1: TLabel
       Left = 32
       Top = 43
@@ -33,6 +39,7 @@ object DelphiTestFrm: TDelphiTestFrm
       Top = 40
       Width = 498
       Height = 21
+      Anchors = [akLeft, akTop, akRight]
       Images = FileImages
       RightButton.DisabledImageIndex = 0
       RightButton.HotImageIndex = 0
@@ -59,6 +66,7 @@ object DelphiTestFrm: TDelphiTestFrm
       Top = 67
       Width = 498
       Height = 21
+      Anchors = [akLeft, akTop, akRight]
       EditLabel.Width = 43
       EditLabel.Height = 13
       EditLabel.Caption = 'ImageUrl'
@@ -70,6 +78,7 @@ object DelphiTestFrm: TDelphiTestFrm
       Top = 65
       Width = 75
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = 'Process Url'
       TabOrder = 3
       OnClick = bnUrlClick
@@ -89,6 +98,7 @@ object DelphiTestFrm: TDelphiTestFrm
     Top = 38
     Width = 75
     Height = 25
+    Anchors = [akTop, akRight]
     Caption = 'Process File'
     TabOrder = 2
     OnClick = bnFileClick

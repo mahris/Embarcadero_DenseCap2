@@ -23,9 +23,7 @@ type
     procedure bnFileClick(Sender: TObject);
     procedure bnUrlClick(Sender: TObject);
   private
-    { Private declarations }
   public
-    { Public declarations }
   end;
 
 var
@@ -45,10 +43,10 @@ var
   bkey, bfilename, bresult: TBSTR;
   skey,sfilename:string;
 begin
-  skey:=edKey.Text;
-  bkey:=SysAllocString(pchar(skey));
-  sfilename:=edFile.Text;
-  bfilename:=SysAllocString(pchar(sfilename));
+  skey := edKey.Text;
+  bkey := SysAllocString(pchar(skey));
+  sfilename := edFile.Text;
+  bfilename := SysAllocString(pchar(sfilename));
   Screen.Cursor := crHourGlass;
   try
     try
@@ -74,10 +72,10 @@ var
   bkey, burl, bresult: TBSTR;
   skey,surl:string;
 begin
-  skey:=edKey.Text;
-  bkey:=SysAllocString(pchar(skey));
-  surl:=edUrl.Text;
-  burl:=SysAllocString(pchar(surl));
+  skey := edKey.Text;
+  bkey := SysAllocString(pchar(skey));
+  surl := edUrl.Text;
+  burl := SysAllocString(pchar(surl));
   Screen.Cursor := crHourGlass;
   try
     try
